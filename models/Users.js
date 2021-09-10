@@ -1,41 +1,59 @@
 const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-// Create a new Sequelize model for books
-class book extends Model {}
+class User extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
-Book.init(
-  // Define fields/columns on model
-  // An `id` is automatically created by Sequelize, though best practice would be to define the primary key ourselves
+User.init(
   {
-    title: {
-      type: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    author: {
-      type: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
-    isbn: {
-      type: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
-    pages: {
-      type: DataTypes.INTEGER
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
+      },
     },
-    edition: {
-      type: DataTypes.INTEGER
-    },
-    // Will become `is_paperback` in table due to `underscored` flag
-    isPaperback: {
-      type: DataTypes.BOOLEAN
-    }
   },
   {
-    // Link to database connection
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        return updatedUserData;
+      },
+    },
     sequelize,
-    // Set to false to remove `created_at` and `updated_at` fields
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
-    modelName: 'book'
+    modelName: 'user',
   }
 );
 
-module.exports = Book;
+module.exports = User;
