@@ -1,0 +1,20 @@
+{
+  "name": "14-MVC-Homework-Model-View-Controller-Tech-Blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dearg-amadaun/14-MVC-Homework-Model-View-Controller-Tech-Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dearg-amadaun/14-MVC-Homework-Model-View-Controller-Tech-Blog/issues"
+  },
+  "homepage": "https://github.com/dearg-amadaun/14-MVC-Homework-Model-View-Controller-Tech-Blog#readme"
+}
