@@ -44,7 +44,6 @@ router.get('/edit/:id', withAuth, (req, res) => {
         {
             model: Comment,
             attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            
             include: {
                 model: User,
                 attributes: ['username']
@@ -57,7 +56,6 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 res.status(404).json({ message: 'No post with this ID' });
                 return;
             }
-
             const post = dbPostData.get({ plain: true });
             res.render('edit-post', { post, loggedIn: true });
         })
