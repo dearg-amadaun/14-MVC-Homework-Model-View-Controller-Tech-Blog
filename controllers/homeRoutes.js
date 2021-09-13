@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
-const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
@@ -35,7 +34,7 @@ router.get('/login', (req, res) => {
     }
     res.render('login');
 });
-router.get('/signup', (reqq, res) => {
+router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
