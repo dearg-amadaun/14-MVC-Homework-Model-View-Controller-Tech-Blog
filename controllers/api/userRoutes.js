@@ -57,6 +57,7 @@ router.get('/:id', (req, res) => {
               req.session.user_id = dbUserData.id;
               req.session.username = dbUserData.username;
               req.session.loggedIn = true;
+              res.session.jason(dbUserData);
           });
       })
       .catch(err => {
@@ -67,7 +68,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-      const dbUserData = await User.findOne({ where: { email: req.body.email } });
+      const dbUserData = await User.findOne({ where: { username: req.body.username } });
   
       if (!dbUserData) {
         res

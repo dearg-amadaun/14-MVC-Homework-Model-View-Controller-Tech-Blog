@@ -20,7 +20,7 @@ router.get('/', withAuth, (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('homepage', { posts, loggedIn: true });
+            res.render('homepage', { posts, loggedIn: req.session.loggedIn});
         })
         .catch(err => {
             console.log(err);

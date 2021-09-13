@@ -7,11 +7,12 @@ const signupFormHandler = async (event) => {
     if (username && password) {
       const response = await fetch('/api/users', {
         method: 'POST',
-        body: JSON.stringify({ userrname, password }),
+        body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
+        console.log('Account Created Successfully')
         document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
