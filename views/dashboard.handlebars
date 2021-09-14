@@ -1,7 +1,36 @@
-{{#each post}}
-{{this.title}}
-{{this.id}}
+<section class="row">
+    <div class="column">
+        <h1>New post</h1>
+        <form id="new-post" class="new-post">
+            <div>
+               <label class="form-label" for="post-title">Title</label>
+               <input  id="post-title" name="post-title" type="text" autofocus="true" class="form-input" />
+            </div>
+            <div>
+                <label class="form-label" for="post-content">Add post here!</label>
+               <input  id="post-content" name="post-content" type="text" autofocus="true" class="form-input" />
+            </div>
+                <button type="submit" class="btn me-md-2 btn-secondary">Creat Post</button>
+        </form>
+    </div>
+    <div class="column">
+        <h2>User Info</h2>
+        {{> user-info}}
+    </div>
+</section>
 
-<div class="class">
-    <a href="/" class="href"></a>
-</div>
+{{#if posts.lenght}}
+<section>
+    <h2>My Posts</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <a href="/dashboard/edit/{{post.id}}" class="edit-post">Edit Post</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+<script src="/js/addPost.js"></script>
