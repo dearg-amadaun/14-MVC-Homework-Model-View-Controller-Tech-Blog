@@ -11,18 +11,21 @@ router.get('/', withAuth, (req, res) => {
 
         include: [{
             model: Comment,
-            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            
+            attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
             include: {
                 model: User,
                 attributes: ['username']
             }
         },
+        {
+            model: User, 
+            attributes: ['username']
+        }
         ]
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('dashboard', { posts, loggedIn: req.session.logged_in });
+            res.render('dashboard', { posts, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -31,23 +34,23 @@ router.get('/', withAuth, (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
-    Post.findOne({
+    Post.findAll({
         where: {
-            id: req.params.id
+            id: req.params.user_id
         },
         attributes: ['id', 'title', 'content', 'created_at'],
-        
+
         include: [{
-            model: User,
-            attributes: ['username']
-        },
-        {
             model: Comment,
-            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+            attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
             include: {
                 model: User,
                 attributes: ['username']
             }
+        },
+        {
+            model: User, 
+            attributes: ['username']
         }
         ]
     })

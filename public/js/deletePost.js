@@ -1,4 +1,4 @@
-async function editFormHandler(event) {
+async function deleteFormHandler(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[
@@ -7,16 +7,9 @@ async function editFormHandler(event) {
 
     const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
-        body: JSON.stringify({
-            post_id: id
         }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
       if (response.ok) {
-        document.location.replace(`/dashboard/`);
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
