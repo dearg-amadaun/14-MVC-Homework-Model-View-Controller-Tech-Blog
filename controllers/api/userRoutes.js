@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-  router.post('/', withAuth, (req, res) => {
+  router.post('/', (req, res) => {
     User.create({
       username: req.body.username,
       password: req.body.password
@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
               req.session.user_id = dbUserData.id;
               req.session.username = dbUserData.username;
               req.session.loggedIn = true;
-              res.session.jason(dbUserData);
+              res.session.json(dbUserData);
           });
       })
       .catch(err => {
@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
 router.post('/login', async (req, res) => {
     try {
       const dbUserData = await User.findOne({ where: { username: req.body.username } });
-  
+  console.log(req.body)
       if (!dbUserData) {
         res
           .status(400)
@@ -94,7 +94,9 @@ router.post('/login', async (req, res) => {
       });
   
     } catch (err) {
+      console.log(err.message)
       res.status(400).json(err);
+
     }
   });
 
