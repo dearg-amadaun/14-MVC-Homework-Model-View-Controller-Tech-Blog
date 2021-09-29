@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
               req.session.user_id = dbUserData.id;
               req.session.username = dbUserData.username;
               req.session.loggedIn = true;
-              res.session.json(dbUserData);
+              res.status(201).json(dbUserData);
           });
       })
       .catch(err => {

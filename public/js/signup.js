@@ -12,7 +12,7 @@ const signupFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        console.log('Account created successfully, loggin in.')
+        console.log('Account created successfully, logging in.')
         document.location.replace('/dashboard');
       } else {
         alert(response.statusText);

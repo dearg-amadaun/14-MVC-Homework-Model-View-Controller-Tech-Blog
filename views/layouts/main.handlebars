@@ -15,8 +15,13 @@
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="/" class="btn btn-primary me-md-2 btn-secondary" type="button">Home</a>
             <a href="/dashboard" class="btn btn-primary me-md-2 btn-secondary" type="button">Dashboard</a>
+{{#if logged_in}}           
+            <button class="btn btn-primary me-md-2 btn-secondary" id="logout" type="button">Logout</button>
+
+{{else}}
             <a href="/login" class="btn btn-primary me-md-2 btn-secondary" type="button">Login</a>
-            <a href="/logout" class="btn btn-primary me-md-2 btn-secondary" id="logout" type="button">Logout</a>
+{{/if}}
+        
         </div>
   </form>
 <h1 class="title">
@@ -28,8 +33,10 @@
     <div class="container">
         {{{body}}}
     </div>
+
 {{#if logged_in}}
 <script src='/js/logout.js'></script>
 {{/if}}
+
 </body>
 </html>

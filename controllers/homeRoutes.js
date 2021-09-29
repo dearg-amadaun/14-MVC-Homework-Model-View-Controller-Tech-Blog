@@ -3,6 +3,7 @@ const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
+    console.log(req.session)
     Post.findAll({
         attributes: ['id', 'title', 'content', 'created_at'],
         order: [[ 'created_at', 'DESC']],
@@ -22,7 +23,7 @@ router.get('/', withAuth, (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('homepage', { posts, loggedIn: req.session.loggedIn});
+            res.render('homepage', { posts, logged_in: req.session.logged_in});
         })
         .catch(err => {
             console.log(err);
