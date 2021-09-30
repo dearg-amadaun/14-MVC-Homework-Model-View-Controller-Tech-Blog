@@ -1,7 +1,8 @@
+
 <section class="row">
     <div class="column">
+        <form id="post-create" class="post-create">
         <h1>New post</h1>
-        <form id="new-post" class="new-post">
             <div>
                <label class="form-label" for="post-title">Title:</label>
                <input  id="post-title" name="post-title" type="text" autofocus="true" class="form-input" />
@@ -18,14 +19,14 @@
 {{#if posts.length}}
 <section>
     <h2>My Posts</h2>
-    <ol>
+    <ul>
         {{#each posts as |post|}}
         <li>
             {{> postInfo post}}
             <a href="/dashboard/edit/{{post.id}}" class="edit-post">Edit Post</a>
         </li>
         {{/each}}
-    </ol>
+    </ul>
 </section>
 {{/if}}
 
