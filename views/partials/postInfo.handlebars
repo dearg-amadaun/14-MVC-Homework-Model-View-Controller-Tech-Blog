@@ -1,7 +1,12 @@
 <div class="card text-white bg-secondary mb-3" style="max-width: 100rem;">
-    <h3><div class="card-header">
-            <span><a href="/post/{{id}}">{{title}}</a></span><br>
-    </div></h3>
+    <h3>
+        <div class="card-header">
+            <span>
+                <a href="/post/{{id}}">{{title}}</a>
+            </span>
+            <br>
+        </div>
+    </h3>
         
         <div class="card-body">
             <p class="card-text">
@@ -12,10 +17,11 @@
         
         <div class="card-footer">
         <p>
+            <button type="submit" class="btn me-md-2 btn-primary" id="delete-post" style="float:left">Delete Post.</button>
             <span style="float:right">Posted by {{user.username}} </span>
         </p>
 
     </div>
 </div>
 
-
+<script src="/js/deletePost.js"></script>
