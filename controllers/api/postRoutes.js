@@ -96,23 +96,42 @@ router.put('/:id', withAuth, (req, res) => {
       });
   });
 
-  router.delete('/:id', withAuth, (req, res) => {
-    Post.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-      .then(dbPostData => {
-        if (!dbPostData) {
-          res.status(404).json({ message: 'No post with this id' });
-          return;
-        }
-        res.json(dbPostData);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+  // router.delete('/:id', withAuth, (req, res) => {
+  //   Post.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   })
+  //     .then(dbPostData => {
+  //       if (!dbPostData) {
+  //         res.status(404).json({ message: 'No post with this id' });
+  //         return;
+  //       }
+  //       res.json(dbPostData);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //       res.status(500).json(err);
+  //     });
+  // });
+
+  router.delete('/:id', async (req, res) => {
+    try {
+      const dbPostData = await Post.destroy({
+        where: {
+          id: req.params.id,
+        },
       });
+  
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with that id!' });
+        return;
+      }
+  
+      res.status(200).json(dbPostData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   });
 
   module.exports = router;
