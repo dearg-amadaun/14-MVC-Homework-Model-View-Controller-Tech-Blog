@@ -60,8 +60,8 @@ router.get('/', (req, res) => {
       });
   });
 
-router.post('/', withAuth, (req, res) => {
-    Post.create({
+router.post('/', async (req, res) => {
+    await Post.create({
       title: req.body.title,
       content: req.body.content,
       user_id: req.session.user_id
