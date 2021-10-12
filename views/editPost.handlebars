@@ -1,16 +1,14 @@
-    <div class="card mt-4">
-      <h3 class="card-header">Edit Post</h3>
-      <form id="edit-post" class="edit-post">
-        <label class="form-label" for="post-title">Post Title</label>
-        <input  id="post-title" name="post-title" type="text" value="{{post.title}}" autofocus="true" class="form-input" />
+<div class="card">
+    <h3 class="card-header">Edit Post</h3>
+    <form class="card-body edit-post-form">
+        <label for="post-title" class="form-label">Title</label>
+        <input name="post-title" type="text" value="{{post.title}}" class="form-input" />
+        <label class="form-label" for="content">Content</label>
+        <input name="content" type="text" value="{{post.content}}" class="form-input" />
+        <button type="submit" class="btn">Update Post</button>
+        <button type="button" class="delete-post-btn btn">Delete Post</button>
+    </form>
+</div>
 
-        <label class="form-label" for="content">Post Content</label>
-        <input  id="post-content" name="post-content" type="text" value="{{post.content}}" autofocus="true" class="form-input" />
-
-         <button type="submit" class="btn me-md-2 btn-secondary">Update Post</button>
-         <button type="submit" class="delete-post-btn btn me-md-2 btn-secondary">Delete Post</button>
-      </form>
-    </div>
-    
 <script src="/js/editPost.js"></script>
 <script src="/js/deletePost.js"></script>

@@ -1,34 +1,18 @@
-
-<section class="row">
-    <div class="column">
-        <form id="post-create" class="post-create">
-        <h1>New post</h1>
-            <div>
-               <label class="form-label" for="post-title">Title:</label>
-               <input  id="post-title" name="post-title" type="text" autofocus="true" class="form-input" />
-            </div>
-            <div>
-                <label class="form-label" for="post-content">Body:</label>
-               <input  id="post-content" name="post-content" type="text" autofocus="true" class="form-input" />
-            </div>
-                <button type="submit" class="btn me-md-2 btn-secondary" id="create-post">Create Post!</button>
-        </form>
-    </div>
-</section>
-
 {{#if posts.length}}
 <section>
     <h2>My Posts</h2>
     <ul>
         {{#each posts as |post|}}
         <li>
-            {{> postInfo post}}
-            <a href="/dashboard/edit/{{post.id}}" class="edit-post">Edit Post</a>
+            {{> post-info post}}
+         
         </li>
         {{/each}}
     </ul>
 </section>
 {{/if}}
+<button type="submit" class="btn me-md-2 btn-secondary"><a class="link" href="/dashboard/new" id="new-post-link">New Post</a></button>
 
 <script src="/js/addPost.js"></script>
 <script src="/js/deletePost.js"></script>
+

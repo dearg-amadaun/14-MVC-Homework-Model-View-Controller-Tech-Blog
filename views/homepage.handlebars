@@ -1,9 +1,5 @@
-{{#each postData}}
-<div class="card border-success mb-3" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-success">{{this.title}}</div>
-  <div class="card-body text-success">
-    <p class="card-text">{{this.content}}</p>
-  </div>
-  <div class="card-footer bg-transparent border-success">{{this.user.username}}</div>
-</div>
-{{/each}}
+<article class="post">
+
+  {{#each posts as |post| }}
+  {{> post-info post}}
+  {{/each}}
