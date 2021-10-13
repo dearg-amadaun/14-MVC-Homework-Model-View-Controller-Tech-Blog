@@ -23,8 +23,6 @@ const sess = {
   })
 };
 
-require('dotenv').config();
-
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
@@ -39,3 +37,7 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+function newFunction() {
+  require('dotenv').config();
+}
+
