@@ -1,9 +1,6 @@
 {
   "name": "14-mvc-homework-model-view-controller-tech-blog",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.x"
-  },
   "description": "",
   "main": "server.js",
   "scripts": {
