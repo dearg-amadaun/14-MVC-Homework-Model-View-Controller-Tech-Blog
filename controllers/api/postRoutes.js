@@ -60,7 +60,7 @@ router.get('/', (req, res) => {
       });
   });
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     await Post.create({
       title: req.body.title,
       content: req.body.content,
@@ -96,7 +96,7 @@ router.put('/:id', withAuth, (req, res) => {
       });
   });
 
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:id', withAuth, async (req, res) => {
     try {
       const dbPostData = await Post.destroy({
         where: {

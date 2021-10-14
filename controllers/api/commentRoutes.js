@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     if (req.session) {
         Comment.create({
             comment: req.body.comment,
@@ -52,7 +52,7 @@ router.get('/:id', async (req, res) => {
       });
   });
 
-router.delete('/:id', async (req, res) =>{
+router.delete('/:id', withAuth, async (req, res) =>{
     Comment.destroy({
         where: {
             id: req.params.id
