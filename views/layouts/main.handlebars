@@ -18,14 +18,13 @@
   <form class="container-fluid">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="/" class="btn btn-primary me-md-2 btn-secondary" type="button">Home</a>
+            {{#if logged_in}}           
             <a href="/dashboard" class="btn btn-primary me-md-2 btn-secondary" type="button">Dashboard</a>
-{{#if logged_in}}           
             <button class="btn btn-primary me-md-2 btn-secondary" id="logout" type="button">Logout</button>
-
-{{else}}
+            {{else}}
+            <a href="/dashboard" class="btn btn-primary me-md-2 btn-secondary" type="button">Dashboard</a>
             <a href="/login" class="btn btn-primary me-md-2 btn-secondary" type="button">Login</a>
-{{/if}}
-        
+            {{/if}}
         </div>
   </form>
 </nav>
